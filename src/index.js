@@ -1,10 +1,24 @@
-// import express from "express"
+import express from 'express';
+import dotenv from 'dotenv';
+dotenv.config()
+
+const app = express();
+
+import userRoutes from './routes/users.js';
+
+
+app.use(express.json()); // parse JSON
+app.use('/api/users', userRoutes);
+
+const PORT = process.env.serverport || 5000;  
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+//  import express from "express"
 // import cors from "cors"
-import dotenv from "dotenv"
+
 // import pool from "./config/db.js"
 import pkg from "pg";
 const {Client}= pkg
-dotenv.config()
 
 console.log("Hi from index.js")
 
